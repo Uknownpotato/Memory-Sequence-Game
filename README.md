@@ -12,3 +12,6 @@ TinkerCad: https://www.tinkercad.com/things/4GKlSfhwrTj-memory-game?sharecode=rh
 
 
 Sequence game on arduino hardware
+
+En buzzer del: https://www.tinkercad.com/things/kaLsWbmmbM4-mighty-snaget/editel?tenant=circuits
+OBS: Denna funkar inte - men borde vara någon enstaka kabel/kod som är problemet.
