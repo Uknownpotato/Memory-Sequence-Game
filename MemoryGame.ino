@@ -24,6 +24,7 @@ int duration = 350;
 int sequence[6];
 int seqSize = 2;
 int debounceTime = 20;
+int life = 4;
 bool gameOver = false;
 bool computerTurn = true;
 
@@ -75,6 +76,24 @@ void displayColor(int color, int duration) {
     delay(duration);
 }
 
+void lifeManagement() {
+  if(life == 0) gameOver = true;
+  
+  for(int j = 0; j < 2; j++) {
+  for(int i = life - 1; i >= 0; i--) {
+  	digitalWrite(8 + i, HIGH); 
+  }
+  delay(500);
+  
+  for(int i = life - 1; i >= 0; i--) {
+  	digitalWrite(8 + i, LOW); 
+  }
+  delay(500);
+  }
+  
+  life--;
+}
+
 // Player turn
 void playerTurn() {
   for(int i = 0; i < seqSize && !gameOver; i++) {
@@ -83,16 +102,27 @@ void playerTurn() {
   
     // Check if player press wrong button.
     if(buttonState != sequence[i]) {
-   		gameOver = true;
+      	if(life !=0) missSound();
+   		lifeManagement();
+        computerTurn = false;
+      	if (life < 0) break;
+      for(int j = 0; j < seqSize; j++) {
+        displayColor(sequence[j], duration);
+      }
+      	i = -1;
+
     } else {
       computerTurn = true;
     }
   }
-  if(gameOver){
-    loseSound();
-  } else {
-    winSound();
-  }
+  
+  // Game Over?
+  	if(gameOver) {
+    	loseSound();
+  	} 
+    if(computerTurn) {
+    	winSound();
+  	}
 }
 
 // Wait for user input
@@ -138,6 +168,16 @@ void winSound() {
   noTone(buzzer);
 }
 
+void missSound() {
+  tone(buzzer, g, 200);
+  delay(200);
+  tone(buzzer, eb, 200);
+  delay(200);
+  tone(buzzer, c, 400);
+  delay(400);
+  noTone(buzzer);
+}
+
 void loseSound() {
   tone(buzzer, g, 150);
   delay(200);
@@ -160,6 +200,9 @@ void loseSound() {
 
 
 void loop() {
+  lifeManagement();
+  delay(350);
+  
   // Check whos turn it is
   while(!gameOver) {
   	if(computerTurn) {
@@ -177,4 +220,3 @@ void loop() {
   	delay(300);
   }
 }
- 
