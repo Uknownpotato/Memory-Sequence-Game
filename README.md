@@ -18,3 +18,6 @@ OBS: Denna funkar inte - men borde vara någon enstaka kabel/kod som är problem
 
 Har fixat till den lite: https://www.tinkercad.com/things/bzNoRZl1CPc-copy-of-memory-game/editel?returnTo=%2Fdashboard%3Fcollection%3Ddesigns
 Ändrat några kopplingar och i koden så den funkar. Lagt till olika toner till färgerna.
+
+Funkar nu kanske:
+https://www.tinkercad.com/things/bzNoRZl1CPc-copy-of-memory-game/editel?returnTo=%2Fdashboard%3Fcollection%3Ddesigns&sharecode=fQjF2-mh4wXeyKr9PfdipjIVoMxjlJ6kKznewWGSh-A
